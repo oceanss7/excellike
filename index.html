@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCEAN-EXCEL</title>
+    <link rel="stylesheet" href="Excel.css" />
+</head>
+
+<body>
+    <div id="excel-container">
+        <!-- //左上角的空白区域 -->
+        <div class="top-left-corner"></div>
+        <div class="col-headers">
+            <!-- 列头 ABCDEFG -->
+            <div class="col-headers" data-col="0">A</div>
+            <div class="col-headers" data-col="1">B</div>
+            <div class="col-headers" data-col="2">C</div>
+            <!-- 动态追加 appendchild -->
+        </div>
+        <div class="row-headers">
+            <!-- 行头 123456 -->
+            <div class="row-headers" data-row="0">1</div>
+            <div class="row-headers" data-row="1">2</div>
+            <div class="row-headers" data-row="2">3</div>
+            <!-- 动态追加 appendchild -->
+        </div>
+        <div class="cells-container">
+            <!-- 单元格格子 -->
+            <div class="row" data-row="0">
+                <div class="cell" data-row="0" data-col="0" contenteditable="false"></div>
+                <div class="cell" data-row="0" data-col="1" contenteditable="false"></div>
+                <div class="cell" data-row="0" data-col="2" contenteditable="false"></div>
+            </div>
+            <div class="row" data-row="1">
+                <div class="cell" data-row="1" data-col="0" contenteditable="false"></div>
+                <div class="cell" data-row="1" data-col="1" contenteditable="false"></div>
+                <div class="cell" data-row="1" data-col="2" contenteditable="false"></div>
+            </div>
+            <div class="row" data-row="2">
+                <div class="cell" data-row="2" data-col="0" contenteditable="false"></div>
+                <div class="cell" data-row="2" data-col="1" contenteditable="false"></div>
+                <div class="cell" data-row="2" data-col="2" contenteditable="false"></div>
+                <!-- 动态生成 appendchild -->
+            </div>
+        </div>
+    </div>
+    <script src="Excel.css"></script>
+    <script src="App.js"></script>
+</body>
+
+</html>
