@@ -35,13 +35,15 @@
     border-bottom: 1px solid #ccc;
 }
 
-.col-headers>div {
+.col-headers>.col-header {
     width: 100px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     border-right: 1px solid #ccc;
     user-select: none;
+    position: relative;
+    background-color: #f9f9f9;
 }
 
 /* 行头 */
@@ -55,16 +57,18 @@
     border-right: 1px solid #ccc;
 }
 
-.row-headers>div {
+.row-headers>.row-header {
     width: 50px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     border-bottom: 1px solid #ccc;
     user-select: none;
+    position: relative;
+    background-color: #f9f9f9;
 }
 
-/* 单元格 */
+/* 单元格区域 */
 .cells-container {
     grid-column: 2/3;
     grid-row: 2/3;
@@ -74,6 +78,8 @@
 
 .row {
     display: flex;
+    height: 30px;
+    /* 固定行高 */
 }
 
 .cell {
@@ -100,13 +106,74 @@
     z-index: 1;
 }
 
-/* 编辑态样 */
+/* 编辑态 */
 .cell.editing {
     background-color: #ffffff;
     border: 1px solid #0078d4;
     outline: none;
 }
 
-.heighRow {}
+/* ==== 列宽拖拽句柄 ==== */
+.leftresizer,
+.rightresizer {
+    position: absolute;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: transparent;
+    cursor: col-resize;
+    z-index: 10;
+}
 
-.highlight {}
+.leftresizer {
+    left: -2px;
+}
+
+.rightresizer {
+    right: -2px;
+}
+
+.col-headers>.col-header:hover .leftresizer,
+.col-headers>.col-header:hover .rightresizer {
+    background-color: rgba(0, 120, 212, 0.3);
+}
+
+/* ==== 行高拖拽句柄 ==== */
+.topresizer,
+.bottomresizer {
+    position: absolute;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background-color: transparent;
+    cursor: row-resize;
+    z-index: 10;
+}
+
+.topresizer {
+    top: -2px;
+}
+
+.bottomresizer {
+    bottom: -2px;
+}
+
+.row-headers>.row-header:hover .topresizer,
+.row-headers>.row-header:hover .bottomresizer {
+    background-color: rgba(0, 120, 212, 0.3);
+}
+
+/* ==== 选中高亮效果 ==== */
+.highlightcol {
+    background-color: green !important;
+}
+
+.highlightrow {
+    background-color: green !important;
+}
+
+.highlightcell {
+    border: 2px solid green !important;
+    background-color: #f0fff0;
+    z-index: 2;
+}

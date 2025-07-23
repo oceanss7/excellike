@@ -14,20 +14,17 @@
         <div class="top-left-corner"></div>
         <div class="col-headers">
             <!-- 列头 ABCDEFG -->
-            <div class="col-headers" data-col="0">A</div>
-            <div class="col-headers" data-col="1">B</div>
-            <div class="col-headers" data-col="2">C</div>
+            <div class="col-header" data-col="0">A</div>
             <!-- 动态追加 appendchild -->
         </div>
         <div class="row-headers">
             <!-- 行头 123456 -->
-            <div class="row-headers" data-row="0">1</div>
-            <div class="row-headers" data-row="1">2</div>
-            <div class="row-headers" data-row="2">3</div>
+            <div class="row-header" data-row="0">1</div>
             <!-- 动态追加 appendchild -->
         </div>
         <div class="cells-container">
             <!-- 单元格格子 -->
+            <!-- 单设置一行row 是用来控制整个行的移动 变宽 变窄 -->
             <div class="row" data-row="0">
                 <div class="cell" data-row="0" data-col="0" contenteditable="false"></div>
                 <div class="cell" data-row="0" data-col="1" contenteditable="false"></div>
@@ -46,7 +43,7 @@
             </div>
         </div>
     </div>
-    <script src="Excel.css"></script>
+    <script src="Excel.js"></script>
     <script src="App.js"></script>
 </body>
 
