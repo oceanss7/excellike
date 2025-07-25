@@ -1,179 +1,128 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-#excel-container {
+.excel-container {
     display: grid;
-    grid-template-columns: 50px 1fr;
-    grid-template-rows: 30px 1fr;
-    height: 100vh;
-    width: 100vw;
-    font-family: sans-serif;
-    overflow: hidden;
-    position: relative;
-}
-
-/* 左上角空白 */
-.top-left-corner {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    background-color: #f0f0f0;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-/* 列头 */
-.col-headers {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ccc;
-}
-
-.col-headers>.col-header {
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    border-right: 1px solid #ccc;
+    grid-template-columns: 40px auto;
+    grid-template-rows: 24px auto;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
     user-select: none;
-    position: relative;
-    background-color: #f9f9f9;
+    width: max-content;
 }
 
-/* 行头 */
 .row-headers {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-right: 1px solid #ccc;
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-auto-rows: 24px;
+    background: #f5f5f5;
 }
 
-.row-headers>.row-header {
-    width: 50px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-    user-select: none;
+.row-header {
     position: relative;
-    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    background: #eee;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    box-sizing: border-box;
 }
 
-/* 单元格区域 */
+.row-resizer {
+    position: absolute;
+    height: 2px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: row-resize;
+    background: rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+.col-headers {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 80px;
+    background: #f5f5f5;
+}
+
+.col-header {
+    position: relative;
+    border: 1px solid #ccc;
+    background: #eee;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    box-sizing: border-box;
+}
+
+.col-resizer {
+    position: absolute;
+    width: 2px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    cursor: col-resize;
+    background: rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
 .cells-container {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    overflow: auto;
-    background-color: #fff;
-}
-
-.row {
-    display: flex;
-    height: 30px;
-    /* 固定行高 */
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
 }
 
 .cell {
-    width: 100px;
-    height: 30px;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 4px;
-    outline: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
+    border: 1px solid #ccc;
+    background: white;
+    text-align: center;
+    line-height: 24px;
+    box-sizing: border-box;
 }
 
-/* Hover 和 Focus 效果 */
-.cell:hover {
-    background-color: #f1faff;
-}
-
-.cell:focus {
-    background-color: #fffbe6;
-    border: 1px solid #409eff;
-    z-index: 1;
-}
-
-/* 编辑态 */
-.cell.editing {
-    background-color: #ffffff;
-    border: 1px solid #0078d4;
-    outline: none;
-}
-
-/* ==== 列宽拖拽句柄 ==== */
-.leftresizer,
-.rightresizer {
-    position: absolute;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background-color: transparent;
-    cursor: col-resize;
-    z-index: 10;
-}
-
-.leftresizer {
-    left: -2px;
-}
-
-.rightresizer {
-    right: -2px;
-}
-
-.col-headers>.col-header:hover .leftresizer,
-.col-headers>.col-header:hover .rightresizer {
-    background-color: rgba(0, 120, 212, 0.3);
-}
-
-/* ==== 行高拖拽句柄 ==== */
-.topresizer,
-.bottomresizer {
-    position: absolute;
-    left: 0;
-    height: 4px;
+.cell-input {
     width: 100%;
-    background-color: transparent;
-    cursor: row-resize;
-    z-index: 10;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font: inherit;
+    padding: 0;
+    margin: 0;
 }
 
-.topresizer {
-    top: -2px;
+/* 单元格被点击，边框变绿 */
+.cell.selected-cell {
+    border: 2px solid #4CAF50;
+    background: #e8f5e9;
+    box-sizing: border-box;
 }
 
-.bottomresizer {
-    bottom: -2px;
+/* 对应行头、列头被选中，变淡绿色 */
+.row-header.highlight-header,
+.col-header.highlight-header {
+    background-color: #dcedc8;
 }
 
-.row-headers>.row-header:hover .topresizer,
-.row-headers>.row-header:hover .bottomresizer {
-    background-color: rgba(0, 120, 212, 0.3);
+/* 点击行头列头，高亮背景变绿 */
+.row-header.active-header,
+.col-header.active-header {
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
 }
 
-/* ==== 选中高亮效果 ==== */
-.highlightcol {
-    background-color: green !important;
+/* 行选中：上下边变绿 */
+.cell.highlight-row {
+    border-top: 2px solid #4CAF50 !important;
+    border-bottom: 2px solid #4CAF50 !important;
+    background: #e8f5e9;
 }
 
-.highlightrow {
-    background-color: green !important;
-}
-
-.highlightcell {
-    border: 2px solid green !important;
-    background-color: #f0fff0;
-    z-index: 2;
+/* 列选中：左右边变绿 */
+.cell.highlight-col {
+    border-left: 2px solid #4CAF50 !important;
+    border-right: 2px solid #4CAF50 !important;
+    background: #e8f5e9;
 }

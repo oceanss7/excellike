@@ -1,2 +1,2 @@
-const container = document.querySelector("#excel-container");
-const excel = new Excel(container, 20, 20);
+// 启动
+const excel = new Excel(document.querySelector('.excel-container'), 20, 15);
